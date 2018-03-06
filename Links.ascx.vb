@@ -645,7 +645,8 @@ Namespace DotNetNuke.Modules.Links
                                 link.NewWindow = False
                                 link.Title = file.FileName
                                 link.ItemId = file.FileId
-                                link.Url = NavigateURL(Me.TabId, String.Empty, "FileId=" & file.FileId.ToString())
+                                'link.Url = NavigateURL(Me.TabId, String.Empty, "FileId=" & file.FileId.ToString())
+                                link.Url = file.RelativePath
                                 link.GrantRoles = ";"
                                 link.Description = Utils.GetFileSizeString(file.Size)
                                 link.ImageURL = Utils.GetImageURL(file.Extension)
