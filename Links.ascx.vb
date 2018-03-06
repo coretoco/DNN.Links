@@ -638,6 +638,7 @@ Namespace DotNetNuke.Modules.Links
 
                             Dim arrFiles As ArrayList = FileSystemUtils.GetFilesByFolder(Me.PortalId, Me.FolderId)
 
+                            Dim fm As New FileManager()
                             For Each file As DotNetNuke.Services.FileSystem.FileInfo In arrFiles
 
                                 Dim link As New LinkInfo
@@ -645,7 +646,9 @@ Namespace DotNetNuke.Modules.Links
                                 link.NewWindow = False
                                 link.Title = file.FileName
                                 link.ItemId = file.FileId
-                                link.Url = NavigateURL(Me.TabId, String.Empty, "FileId=" & file.FileId.ToString())
+                                'link.Url = NavigateURL(Me.TabId, String.Empty, "FileId=" & file.FileId.ToString())
+                                Dim fi As IFileInfo = fm.GetFile(file.FileId)
+                                link.Url = fi.RelativePath
                                 link.GrantRoles = ";"
                                 link.Description = Utils.GetFileSizeString(file.Size)
                                 link.ImageURL = Utils.GetImageURL(file.Extension)
